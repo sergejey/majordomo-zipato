@@ -1,0 +1,105 @@
+
+<!-- table zwave_devices search -->
+ <!-- action usual -->
+ [#if DATA_SOURCE="zipatodevices" || DATA_SOURCE=""#]
+ <!-- table zipatodevices search -->
+ [#if VIEW_MODE="search_zipatodevices" || VIEW_MODE=""#]
+
+<div class="row">
+<div class="col-md-6">
+    <a href="?mode=sync" class="btn btn-default"><i class="glyphicon glyphicon-refresh"></i> Synchronize devices</a>
+</div>
+
+<div class="col-md-6">
+<div>
+    API Status:
+    <b>[#if API_ONLINE="1"#]<span style="color:green">ONLINE</span>[#else#]<span style="color:red">OFFLINE</span>[#endif#]</b>
+    [ <a href="#" onClick="$('#api_settings').toggle();return false;"><#LANG_SETUP#></a> ]
+</div>
+<div style="display:none" id='api_settings'>
+    &nbsp;
+    <form action="?" method="post" enctype="multipart/form-data" name="frmEdit" class="form-horizontal">
+        <fieldset>
+            <div class="form-group">
+                <label class="control-label"[#if ERR_API_URL#] style="color:red;font-weight:bold"[#endif#]>
+                    IP:
+                    (*)
+                </label>
+                <div class="controls"><input type="text" name="api_url" value="[#API_URL#]" class="form-control"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label"[#if ERR_API_USERNAME#] style="color:red;font-weight:bold"[#endif#]>
+                    API Username:
+                </label>
+                <div class="controls"><input type="text" name="api_username" value="[#API_USERNAME#]" class="form-control"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label"[#if ERR_API_PASSWORD#] style="color:red;font-weight:bold"[#endif#]>
+                    API Password:
+                </label>
+                <div class="controls"><input type="password" name="api_password" value="[#API_PASSWORD#]" class="form-control"></div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" name="subm" value="Submit" class="btn btn-primary"><#LANG_UPDATE#></button>
+                <input type="hidden" name="view_mode" value="update_settings">
+                <input type="hidden" name="mode" value="update">
+            </div>
+        </fieldset>
+    </form>
+</div>
+</div>
+    </div>
+&nbsp;
+
+
+  [#inc zipatodevices_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table zipatodevices search -->
+ <!-- table zipatodevices edit -->
+ [#if VIEW_MODE="edit_zipatodevices"#]
+   [#if ID!=""#]
+   [#if TITLE!=""#]<h4>[#TITLE#]</h4>[#endif TITLE#]
+<ul class="nav nav-tabs">
+  <li[#if TAB=""#] class="active"[#endif#]>
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=<#VIEW_MODE#>&id=<#ID#>&tab="><#LANG_GENERAL#></a>
+  </li>
+  <li[#if TAB="data"#] class="active"[#endif#]>
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=<#VIEW_MODE#>&id=<#ID#>&tab=data">&#060#LANG_DATA#&#062</a>
+  </li>
+</ul>
+&nbsp;<br/>
+   [#endif ID#]
+   [#if TAB=""#]
+    [#inc zipatodevices_edit_default.html#]
+   [#endif TAB#]
+   [#if TAB="data"#]
+    [#inc zipatodevices_edit_data.html#]
+   [#endif TAB#]
+ [#endif VIEW_MODE#]
+ <!-- / table zipatodevices edit -->
+ <!-- table zipatodevices view --> 
+ [#if VIEW_MODE="view_zipatodevices"#]
+   [#if TAB=""#]
+    [#inc zipatodevices_view_default.html#]
+   [#endif TAB#]
+ [#endif VIEW_MODE#]
+ <!-- / table zipatodevices view -->
+ [#endif DATA_SOURCE#]
+ <!-- action usual -->
+ [#if DATA_SOURCE="zipatocommands"#]
+ <!-- table zipatocommands search -->
+ [#if VIEW_MODE="search_zipatocommands" || VIEW_MODE=""#]
+  [#inc zipatocommands_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table zipatocommands search -->
+ <!-- table zipatocommands edit -->
+ [#if VIEW_MODE="edit_zipatocommands"#]
+   [#inc zipatocommands_edit.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table zipatocommands edit -->
+ <!-- table zipatocommands view --> 
+ [#if VIEW_MODE="view_zipatocommands"#]
+   [#inc zipatocommands_view.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table zipatocommands view -->
+ [#endif DATA_SOURCE#]
