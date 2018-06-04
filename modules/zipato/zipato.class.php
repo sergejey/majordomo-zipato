@@ -496,7 +496,8 @@ zipatocommands -
 
  zipatoendpoints: ID int(10) unsigned NOT NULL auto_increment
  zipatoendpoints: TITLE varchar(100) NOT NULL DEFAULT ''
- zipatoendpoints: UUID varchar(100) NOT NULL DEFAULT '' 
+ zipatoendpoints: UUID varchar(100) NOT NULL DEFAULT ''
+ zipatoendpoints: DEVICE_ID int(10) NOT NULL DEFAULT '0'  
  zipatoendpoints: ENDPOINT_TYPE varchar(100) NOT NULL DEFAULT ''
 
  zipatocommands: ID int(10) unsigned NOT NULL auto_increment
