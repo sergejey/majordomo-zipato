@@ -275,6 +275,7 @@ function processAttributeData($uuid, $data) {
 
     $value = $data['value'];
     $updated = strtotime($data['timestamp']);
+    if ($value==='') $value=0;
     $rec['VALUE']=$value;
     $rec['UPDATED']=date('Y-m-d H:i:s',$updated);
     SQLUpdate('zipatocommands',$rec);
